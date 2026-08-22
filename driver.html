@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Cockpit — SafaiSaathi</title>
+  <meta name="description" content="Driver location broadcasting and stop-coverage interface for SafaiSaathi.">
+
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <a href="index.html" class="brand-container">
+      <div class="brand-logo">🚚</div>
+      <div>
+        <div class="brand-title">Driver Cockpit</div>
+        <div class="brand-tagline">SafaiSaathi • GPS Broadcaster</div>
+      </div>
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-item">🏡 Citizen View</a></li>
+        <li><a href="driver.html" class="nav-item active">📱 Driver Cockpit</a></li>
+        <li><a href="admin.html" class="nav-item">📊 Admin Desk</a></li>
+        <li><a href="impact.html" class="nav-item"><span class="nav-pill-badge">1M1B</span> Impact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Simulator Quick Bar -->
+  <div class="simulator-bar">
+    <div class="sim-info">
+      <div class="sim-dot"></div>
+      <span id="gps-status-indicator">🎮 Web Simulator Mode (No phone GPS needed)</span>
+    </div>
+    <div class="sim-controls">
+      <a href="index.html" class="sim-btn" style="text-decoration:none;">🗺 Open Citizen Map</a>
+    </div>
+  </div>
+
+  <!-- Main Driver Container -->
+  <main class="driver-container">
+    
+    <!-- Driver Profile & Shift Stats -->
+    <div class="driver-profile-card">
+      <div class="profile-header">
+        <div>
+          <div class="driver-name" id="driver-name">Ramesh Kumar</div>
+          <div class="driver-vehicle" id="driver-vehicle-no">DL-01-GB-4092 (Electric Tipper)</div>
+        </div>
+        <span class="badge badge-success" id="driver-shift-badge">Active Duty</span>
+      </div>
+
+      <div style="font-size: 0.8rem; color: var(--slate-300); margin-bottom: 0.85rem;">
+        📍 Assigned Route: <strong id="driver-route-name" style="color:white;">Ward 14 Morning Route</strong>
+      </div>
+
+      <div class="driver-stats-row">
+        <div class="stat-item">
+          <div class="stat-val" id="driver-coverage-pct">0%</div>
+          <div class="stat-lbl">Route Coverage</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="driver-stops-count">0 / 8</div>
+          <div class="stat-lbl">Stops Completed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="driver-distance">0 m</div>
+          <div class="stat-lbl">Distance Logged</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shift Controls Panel -->
+    <div class="shift-panel">
+      <div class="gps-mode-toggle">
+        <span>Broadcast Real Phone GPS</span>
+        <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+          <input type="checkbox" id="toggle-gps-mode" style="width:18px; height:18px; accent-color:var(--primary-600);">
+          <span style="font-size:12px; color:var(--slate-600);">Enable</span>
+        </label>
+      </div>
+
+      <div style="font-size:0.8rem; color:var(--slate-500); margin-bottom:0.4rem;">
+        💡 Tip: Keep phone screen awake during collection route. Proximity detection auto-logs covered stops within 75m.
+      </div>
+
+      <div class="shift-controls-grid">
+        <button class="btn btn-primary btn-lg" id="btn-start-route">
+          ▶ Start Route
+        </button>
+        <button class="btn btn-secondary btn-lg" id="btn-pause-route" disabled>
+          ⏸ Pause
+        </button>
+      </div>
+      <button class="btn btn-danger btn-sm" id="btn-end-route" style="width:100%; margin-top:0.75rem;" disabled>
+        ⏹ End Shift & Submit Day Log
+      </button>
+    </div>
+
+    <!-- Next Stop Focus Card -->
+    <div class="next-stop-card">
+      <div class="next-stop-tag">Upcoming Target Stop</div>
+      <div class="next-stop-title" id="next-stop-title">Stop 1: Block A Market</div>
+      <div class="next-stop-landmark" id="next-stop-landmark">Near Mother Dairy & A-Block Gate</div>
+      <div style="font-weight:700; font-size:0.95rem;" id="next-stop-dist">📍 250 m away (45 households)</div>
+    </div>
+
+    <!-- Checkpoint Checklist -->
+    <div class="checklist-card">
+      <div class="card-header">
+        <h4 class="card-title">Assigned Route Stops (8 Checkpoints)</h4>
+        <span style="font-size:0.75rem; color:var(--slate-500);">Auto or Manual Override</span>
+      </div>
+
+      <div id="driver-stop-checklist">
+        <!-- Populated dynamically via driver-app.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Application Modules -->
+  <script type="module" src="js/config.js"></script>
+  <script type="module" src="js/geo-engine.js"></script>
+  <script type="module" src="js/audio.js"></script>
+  <script type="module" src="js/state.js"></script>
+  <script type="module" src="js/simulator.js"></script>
+  <script type="module" src="js/driver-app.js"></script>
+
+</body>
+</html>

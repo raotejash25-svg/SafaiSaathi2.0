@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "safai-saathi",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/driver", "destination": "/driver.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/impact", "destination": "/impact.html" },
+    { "source": "/citizen", "destination": "/index.html" },
+    { "source": "/", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ]
+}

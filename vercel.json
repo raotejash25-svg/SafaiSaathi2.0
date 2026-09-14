@@ -2,13 +2,6 @@
   "version": 2,
   "name": "safai-saathi",
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/driver", "destination": "/driver.html" },
-    { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/impact", "destination": "/impact.html" },
-    { "source": "/citizen", "destination": "/index.html" },
-    { "source": "/", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/(.*)",
